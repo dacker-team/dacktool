@@ -1,0 +1,11 @@
+venv/
+.idea/
+*.pyc
+__pycache__/
+build/
+dist/
+*egg-info/
+*sandbox*
+.DS_Store
+deploy.sh
+config.yaml
