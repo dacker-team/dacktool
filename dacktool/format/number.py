@@ -22,6 +22,10 @@ def approx_value(value, currency):
     return v
 
 
+def split_digits(value):
+    return format(value, ',').replace(',', ' ')
+
+
 def make_pct(value, decimals, sign=False):
     s = ''
     if sign:
