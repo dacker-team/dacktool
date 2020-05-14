@@ -22,8 +22,10 @@ def approx_value(value, currency):
     return v
 
 
-def split_digits(value):
-    return format(value, ',').replace(',', ' ')
+class Test:
+
+    def split_digits(value):
+        return format(value, ',').replace(',', ' ')
 
 
 def make_pct(value, decimals, sign=False):
@@ -34,5 +36,3 @@ def make_pct(value, decimals, sign=False):
         else:
             s = '+'
     return s + str(round(value * 100, decimals)) + '%'
-
-
