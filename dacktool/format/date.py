@@ -66,5 +66,5 @@ class date:
         return all_month
 
 
-    def date_pretty(self, date):
-        return date.strftime("%A, %d %B %Y")
+def date_pretty(date):
+    return date.strftime("%A, %d %B %Y")
