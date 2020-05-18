@@ -1,1 +1,1 @@
-from dacktool.format import date, number
+from dacktool.format import date, number, text
