@@ -5,11 +5,12 @@ def k_or_m():
 def approx_value(value, currency):
     n = len(str(int(value)))
     d = 0
-    r = 1
+    r = 2
     suf = ''
     if n > 3:
         suf = 'k'
         d = 3
+        r = 1
         if n > 6:
             suf = ' million '
             d = 6
