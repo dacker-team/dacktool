@@ -1,4 +1,4 @@
-def split_paragraphs(text):
+def split_paragraphs(text, css_style):
     list = text.split('. ')
     result = []
     paragraph = ''
@@ -7,4 +7,5 @@ def split_paragraphs(text):
         if len(paragraph) > 200:
             result.append(paragraph)
             paragraph = ''
-    return '</p><p>'.join(result)
+    delimiter = '</%s><%s>' % (css_style, css_style)
+    return delimiter.join(result)

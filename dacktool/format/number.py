@@ -12,10 +12,10 @@ def approx_value(value, currency):
         d = 3
         r = 1
         if n > 6:
-            suf = ' million '
+            suf = 'M'
             d = 6
             if n > 9:
-                suf = ' billion '
+                suf = 'B'
                 d = 9
                 if n > 12:
                     r = 0
