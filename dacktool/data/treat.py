@@ -1,4 +1,5 @@
 import collections
+import copy
 import datetime
 import json
 
@@ -17,7 +18,7 @@ def flatten(d, parent_key='', sep='_'):
 def treat_data(raw_data, column_names):
     rows = []
     for data in raw_data:
-        flatten_data = flatten(data, parent_key='', sep='_')
+        flatten_data = flatten(data)
         row = []
         for column in column_names:
             try:
@@ -33,3 +34,21 @@ def treat_data(raw_data, column_names):
                 row.append(None)
         rows.append(row)
     return rows
+
+
+def treat_dict_and_unnest(list_of_dict, columns_to_remove=[], columns_to_unnest=None):
+    result = []
+    for d in list_of_dict:
+        new_d = flatten(d)
+        for k in list(new_d.keys()):
+            if k in columns_to_remove:
+                del new_d[k]
+        if columns_to_unnest:
+            for l in new_d[columns_to_unnest]:
+                new_sub_d = copy.deepcopy(new_d)
+                new_sub_d.update(flatten({columns_to_unnest: l}))
+                del new_sub_d[columns_to_unnest]
+                result.append(new_sub_d)
+        else:
+            result.append(new_d)
+    return result
