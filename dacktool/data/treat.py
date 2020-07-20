@@ -39,16 +39,23 @@ def treat_data(raw_data, column_names):
 def treat_dict_and_unnest(list_of_dict, columns_to_remove=[], columns_to_unnest=None):
     result = []
     for d in list_of_dict:
-        new_d = flatten(d)
-        for k in list(new_d.keys()):
+        for k in list(d.keys()):
             if k in columns_to_remove:
-                del new_d[k]
+                del d[k]
+        new_d = flatten(d)
         if columns_to_unnest:
-            for l in new_d[columns_to_unnest]:
+            field_to_unnest = new_d.get(columns_to_unnest) if new_d.get(columns_to_unnest) else []
+            for l in field_to_unnest:
                 new_sub_d = copy.deepcopy(new_d)
                 new_sub_d.update(flatten({columns_to_unnest: l}))
                 del new_sub_d[columns_to_unnest]
                 result.append(new_sub_d)
         else:
             result.append(new_d)
+    for r in result:
+        for k in r.keys():
+            if isinstance(r[k], list) or isinstance(r[k], dict):
+                r[k] = json.dumps(r[k])
+            elif r[k] == "":
+                r[k] = None
     return result
