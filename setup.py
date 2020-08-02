@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="dacktool",
-    version="0.0.6",
+    version="0.0.7",
     author="Dacker",
     author_email="hello@dacker.co",
     description="Some python tools",
